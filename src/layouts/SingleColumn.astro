@@ -1,0 +1,11 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const { metaTitle, pageTitle } = Astro.props;
+---
+
+<BaseLayout metaTitle={metaTitle} pageTitle={pageTitle} contentLayout="single-column">
+  <article>
+    <slot />
+  </article>
+</BaseLayout>

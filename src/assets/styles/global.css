@@ -1,0 +1,133 @@
+
+body {
+  min-width: 960px;
+  color: var(--font-base);
+}
+
+h1, h2, h3, h4, h5 {
+  line-height: 1.1em;
+}
+h1 {
+  font-size: 3.3rem;
+}
+h2 {
+  font-size: 2.5rem;
+}
+h3 {
+  font-size: 2.25rem;
+}
+h4 {
+  font-size: 2rem;
+}
+h5 {
+  font-size: 1.5rem;
+}
+
+a {
+  --link-hover: hsl(from var(--apo-blue) h s calc(l - 10));
+  color: var(--apo-blue);
+  text-decoration: none;
+  border-bottom: solid 2px transparent;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+
+  &:hover,
+  &:active {
+    color: var(--link-hover);
+    border-bottom-color: var(--link-hover);
+  }
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px 18px;
+
+  background: var(--apo-blue);
+  border-bottom: solid .5rem var(--apo-gold);
+
+  font-size: 1.5rem;
+  line-height: 2.1rem;
+  
+  &,
+  a {
+    color: var(--off-white);
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--med-gray);
+    border-bottom: none;
+  }
+
+  .site-logo {
+    margin-right: 48px;
+
+    a {
+      border: 0;
+    }
+
+    img {
+      margin-bottom: 24px;
+      max-width: 250px;
+    }
+
+    .site-subhead {
+      margin: 0;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+    };
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 8px 24px;
+    border-bottom: none;
+
+    &:hover {
+      color: var(--apo-blue);
+      background-color: var(--off-white);
+    }
+  }
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  display: grid;
+  font-size: 1.25rem;
+
+  &.single-column {
+    grid-template:
+      "a" auto / auto;
+  }
+  &.sidebar-left,
+  &.sidebar-right {
+    grid-template:
+      "a a" auto
+      "b c" auto;
+  }
+  &.sidebar-left {
+    grid-template-columns: 1fr 2fr;
+    article {
+      margin-left: 2rem;
+    }
+    aside {
+      grid-column: 1;
+      grid-row: 1 / b-end;
+    }
+  }
+  &.sidebar-right {
+    grid-template-columns: 2fr 1fr;
+    article {
+      margin-right: 2rem;
+    }
+    aside {
+      grid-column: 2;
+      grid-row: 1 / c-end;
+    }
+  }
+}

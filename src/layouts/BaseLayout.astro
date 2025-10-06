@@ -1,0 +1,24 @@
+---
+import Header from '@/components/Header.astro';
+import '@styles/base.css';
+import '@styles/global.css';
+
+const { contentLayout, metaTitle, pageTitle } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{ metaTitle }</title>
+  </head>
+  <body>
+		<Header />
+		<main class={contentLayout}>
+			<h1 class="page-title">{ pageTitle }</h1>
+			<slot />
+		</main>
+  </body>
+</html>

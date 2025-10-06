@@ -1,0 +1,17 @@
+:root {
+  --apo-blue: #0033ab;
+  --apo-gold: #fcb426;
+  --off-white: #efefef;
+  --med-gray: #cecece;
+  --font-base: #323232;
+
+  font-size: 9pt;
+  font-family: 'Futura', Helvetica, sans-serif;
+
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}

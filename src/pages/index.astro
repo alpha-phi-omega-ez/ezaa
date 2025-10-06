@@ -1,16 +1,14 @@
 ---
+import BaseLayout from '@layouts/BaseLayout.astro';
 
+const layoutProps = {
+  metaTitle: "Epsilon Zeta Alumni Association",
+  pageTitle: "Welcome",
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout {...layoutProps}>
+  <p>Welcome to the new Epsilon Zeta Alumni Association website.</p>
+  <p>We're still in the process of migrating documents, files, and photographs. Please stay tuned for news and further updates in the coming months.</p>
+  <p>You may sign up for our mailing list or find us on social media here.</p>
+</BaseLayout>
