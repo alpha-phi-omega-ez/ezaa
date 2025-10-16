@@ -1,5 +1,6 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import NewsFeed from '@/components/News/NewsFeed.astro';
+import Layout from '@layouts/SingleColumn.astro';
 
 const layoutProps = {
   metaTitle: "Epsilon Zeta Alumni Association",
@@ -7,8 +8,10 @@ const layoutProps = {
 };
 ---
 
-<BaseLayout {...layoutProps}>
+<Layout {...layoutProps}>
   <p>Welcome to the new Epsilon Zeta Alumni Association website.</p>
   <p>We're still in the process of migrating documents, files, and photographs. Please stay tuned for news and further updates in the coming months.</p>
   <p>You may sign up for our mailing list or find us on social media here.</p>
-</BaseLayout>
+
+  <NewsFeed />
+</Layout>

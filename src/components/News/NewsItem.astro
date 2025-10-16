@@ -1,0 +1,28 @@
+---
+import Excerpt from '@igor.dvlpr/astro-post-excerpt';
+import { formatDate } from '@/scripts/date';
+
+const { item: post } = Astro.props;
+const {
+  frontmatter: {
+    date: rawDate,
+    title,
+    url,
+  }
+} = post;
+const date = formatDate(rawDate, "short");
+---
+
+<li>
+  <article>
+    <h3>
+      <a href={url}>{title}</a>
+    </h3>
+    <strong>{date}</strong>
+    <p>
+      <Excerpt
+        post={post}
+      />
+    </p>
+  </article>
+</li>

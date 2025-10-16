@@ -1,0 +1,13 @@
+#news-feed {
+  ul, li {
+    list-style: none outside none;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    border-bottom: solid 1px var(--med-gray);
+  }
+}
