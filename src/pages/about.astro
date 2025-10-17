@@ -1,5 +1,6 @@
 ---
 import Layout from '@layouts/SidebarRight.astro';
+import OfficersBlock from '@components/OfficersBlock.astro';
 
 const layoutProps = {
   metaTitle: "About EZAA | Epsilon Zeta Alumni Association",
@@ -22,16 +23,5 @@ const layoutProps = {
       Troy, NY 12180
     </p>
   </Fragment>
-  <Fragment slot="sidebar">
-    <h3>Alumni Association Officers</h3>
-    <ul>
-      
-    </ul>
-      <li>President: Richard Vehlow, 1991</li>
-      <li>Vice President: Kenneth Bienstock, 1981</li>
-      <li>Secretary-Treasurer: David Nagy, 1985</li>
-      <li>Extension Chair: David Roggenkamp, 1985</li>
-      <li>Member-at-Large: Seth Judson, 2019</li>
-    </ul>
-  </Fragment>
+  <OfficersBlock slot="sidebar" />
 </Layout>

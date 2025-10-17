@@ -1,0 +1,36 @@
+---
+const officers = {
+  "President": "Rafael Cenzano, 2025",
+  "Vice President": "Kenneth Bienstock, 1981",
+  "Secretary-Treasurer": "Kenneth Bienstock, 1985",
+  "Extension Chair": "Kenneth Bienstock, 1985",
+  "Member-At-Large": "Sara Seelman, 2025",
+};
+---
+<Fragment>
+  <style>
+    dt, dd {
+      display: block;
+      clear: both;
+      margin-left: 0;
+      padding: 0;
+    }
+
+    dt {
+      font-weight: bold;
+    }
+
+    dd {
+      margin-bottom: 1rem;
+    }
+  </style>
+  <h3>Alumni Association Officers</h3>
+  <dl>
+    {
+      Object.entries(officers).map(([office, holder]) => (
+        <dt>{office}</dt>
+        <dd>{holder}</dd>
+      ))
+    }
+  </dl>
+</Fragment>
