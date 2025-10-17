@@ -1,0 +1,38 @@
+---
+const minutes = Object.values(
+  import.meta.glob(
+    '@pages/minutes/*.md',
+    { eager: true }
+  )
+).filter((i) => (
+  i.frontmatter.tags?.includes("business meeting")
+)).sort((a, b) => {
+  let da = new Date(a.frontmatter.date);
+  let db = new Date(b.frontmatter.date);
+  return (db.valueOf() - da.valueOf());
+});
+
+---
+
+<div id="docs-list">
+  <h2>General Resources</h2>
+    <ul>
+      <li>
+        <a href="/docs/bylaws/ezaa-bylaws-2022.pdf" target="_blank">
+          EZAA Bylaws (Last Amended October 9, 2022)
+        </a>
+      </li>
+    </ul>
+  <h2>Meeting Minutes</h2>
+  <ul>
+    {
+      minutes.map((item: any) => (
+        <li>
+          <a href={item.url}>
+            {item.frontmatter.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
