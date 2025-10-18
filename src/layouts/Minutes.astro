@@ -19,7 +19,7 @@ const date = formatDate(rawDate);
     <h2>Attendees:</h2>
     <ul>
       {
-        participants.map((a) => (
+        participants.map((a: string) => (
           <li>
             {a}
           </li>
