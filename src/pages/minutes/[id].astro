@@ -1,0 +1,48 @@
+---
+import { getCollection, render } from 'astro:content';
+import SidebarRight from '@layouts/SidebarRight.astro';
+import { formatDate } from '@scripts/date';
+
+export const getStaticPaths = async () => {
+  const news = await getCollection("minutes");
+  return news.map((minutes) => ({
+    params: { id: minutes.id },
+    props: { minutes },
+  }));
+};
+
+
+const {
+  minutes,
+  minutes: {
+    data: {
+      date,
+      title,
+      participants,
+    },
+  },
+} = Astro.props;
+
+const formattedDate = formatDate(date);
+const { Content } = await render(minutes);
+---
+
+<SidebarRight metaTitle={title} pageTitle={title} contentLayout="sidebar-right">
+  <strong>
+  { formattedDate }
+  </strong>
+  <hr />
+  <Content />
+  <Fragment slot="sidebar">
+    <h2>Attendees:</h2>
+    <ul>
+      {
+        participants.map((participant) => (
+          <li>
+            {participant}
+          </li>
+        ))
+      }
+    </ul>
+  </Fragment>
+</SidebarRight>

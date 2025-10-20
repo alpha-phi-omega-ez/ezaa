@@ -1,5 +1,4 @@
-const formatDate = (dateString: string, format: "short" | "full" = "full"): string => {
-  const date = new Date(dateString);
+const formatDate = (date: Date, format: "short" | "full" = "full"): string => {
   const formatted = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/New_York",
     dateStyle: format,

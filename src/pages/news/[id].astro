@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from 'astro:content';
+import SingleColumn from '@layouts/SingleColumn.astro';
+import { formatDate } from '@scripts/date';
+
+export const getStaticPaths = async () => {
+  const news = await getCollection("news");
+  return news.map((newsItem) => ({
+    params: { id: newsItem.id },
+    props: { newsItem },
+  }));
+};
+
+const {
+  newsItem,
+  newsItem: {
+    data: {
+      author,
+      date,
+      title,
+    }
+  }
+} = Astro.props;
+
+const formattedDate = formatDate(date);
+const { Content } = await render(newsItem);
+---
+
+<SingleColumn metaTitle={title} pageTitle={title} contentLayout="sidebar-right">
+  <strong>
+    News | { formattedDate } by {author}
+  </strong>
+  <hr />
+  <Content />
+</SingleColumn>

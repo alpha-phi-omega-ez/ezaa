@@ -1,14 +1,13 @@
 ---
-const minutes = Object.values(
-  import.meta.glob(
-    '@pages/minutes/*.md',
-    { eager: true }
-  )
+import { getCollection } from 'astro:content';
+
+const minutes = (
+  await getCollection("minutes")
 ).filter((i) => (
-  i.frontmatter.tags?.includes("business meeting")
+  i.data.tags?.includes("business meeting")
 )).sort((a, b) => {
-  let da = new Date(a.frontmatter.date);
-  let db = new Date(b.frontmatter.date);
+  let da = new Date(a.data.date);
+  let db = new Date(b.data.date);
   return (db.valueOf() - da.valueOf());
 });
 
@@ -28,8 +27,8 @@ const minutes = Object.values(
     {
       minutes.map((item: any) => (
         <li>
-          <a href={item.url}>
-            {item.frontmatter.title}
+          <a href={`/minutes/${item.id}`}>
+            {item.data.title}
           </a>
         </li>
       ))

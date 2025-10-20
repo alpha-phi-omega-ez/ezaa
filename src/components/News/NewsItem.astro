@@ -4,12 +4,14 @@ import { formatDate } from '@/scripts/date';
 
 const { item: post } = Astro.props;
 const {
-  frontmatter: {
+  data: {
     date: rawDate,
     title,
-    url,
-  }
+  },
+  id,
 } = post;
+
+const url = `/news/${id}`;
 const date = formatDate(rawDate, "short");
 ---
 

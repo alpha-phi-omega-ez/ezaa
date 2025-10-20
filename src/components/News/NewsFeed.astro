@@ -1,15 +1,13 @@
 ---
+import { getCollection } from 'astro:content';
 import NewsItem from './NewsItem.astro';
 import './news-feed.css';
 
-const feedItems = Object.values(
-  import.meta.glob(
-    '@pages/news/*.md',
-    { eager: true }
-  )
+const newsItems = (
+  await getCollection("news")
 ).sort((a, b) => {
-  let da = new Date(a.frontmatter.date);
-  let db = new Date(b.frontmatter.date);
+  let da = new Date(a.data.date);
+  let db = new Date(b.data.date);
   return (db.valueOf() - da.valueOf());
 });
 
@@ -19,7 +17,7 @@ const feedItems = Object.values(
   <h2>Recent News</h2>
   <ul>
     {
-      feedItems.map((item: any) => (
+      newsItems.map((item: any) => (
         <NewsItem item={item} />
       ))
     }
