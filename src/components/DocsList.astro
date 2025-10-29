@@ -1,10 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
 
+const desiredTags = ["business meeting", "ecomm meeting"];
+
 const minutes = (
   await getCollection("minutes")
 ).filter((i) => (
-  i.data.tags?.includes("business meeting")
+  desiredTags.some(tag => i.data.tags?.includes(tag))
 )).sort((a, b) => {
   let da = new Date(a.data.date);
   let db = new Date(b.data.date);
