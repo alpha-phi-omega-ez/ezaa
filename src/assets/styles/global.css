@@ -1,6 +1,5 @@
 
 body {
-  min-width: 960px;
   color: var(--font-base);
   background: var(--med-gray);
 }
@@ -9,13 +8,20 @@ h1, h2, h3, h4, h5 {
   line-height: 1.1em;
 }
 h1 {
-  font-size: 3.3rem;
+  /* Fluid, capped: grows smoothly then caps on large screens */
+  font-size: clamp(2rem, 5vw + 0.5rem, 3rem);
+  margin-top: clamp(0.5rem, 1.2vw, 1rem);
+  margin-bottom: clamp(0.5rem, 1.2vw, 1rem);
 }
 h2 {
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 3.8vw + 0.2rem, 2.25rem);
+  margin-top: clamp(0.5rem, 1vw, 1rem);
+  margin-bottom: clamp(0.5rem, 1vw, 1rem);
 }
 h3 {
-  font-size: 2.25rem;
+  font-size: clamp(1.3rem, 3vw + 0.2rem, 1.75rem);
+  margin-top: clamp(0.5rem, 1vw, 1rem);
+  margin-bottom: clamp(0.5rem, 1vw, 1rem);
 }
 h4 {
   font-size: 2rem;
@@ -42,6 +48,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 
   padding: 24px 18px;
 
@@ -72,6 +79,8 @@ header {
     img {
       margin-bottom: 24px;
       max-width: 250px;
+      width: auto;
+      height: auto;
     }
 
     .site-subhead {
@@ -80,6 +89,12 @@ header {
       text-align: center;
       text-transform: uppercase;
     };
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   nav a {
@@ -95,14 +110,90 @@ header {
 }
 
 main {
-  padding-top: 2rem;
-  font-size: 1.25rem;
+  padding: 2rem 1rem 0;
+  /* Fluid base size with cap */
+  font-size: clamp(1rem, 0.6vw + 0.95rem, 1.25rem);
   background-color: var(--off-white);
 
   .grid-container {
-      max-width: 960px;
+      max-width: 1100px;
       margin: 0 auto;
       display: grid;
+      padding: 0 1rem;
+  }
+  
+  /* Prevent grid children from causing horizontal overflow */
+  .grid-container article,
+  .grid-container aside {
+    min-width: 0; /* allow content to shrink within grid tracks */
+  }
+  
+  /* Ensure all content has proper padding */
+  .grid-container > * {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  /* Ensure content doesn't overflow container */
+  .grid-container {
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  .grid-container * {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  
+  /* Force all text content to respect container boundaries */
+  .grid-container p,
+  .grid-container h1,
+  .grid-container h2,
+  .grid-container h3,
+  .grid-container h4,
+  .grid-container h5,
+  .grid-container ul,
+  .grid-container ol,
+  .grid-container li,
+  .grid-container strong,
+  .grid-container hr {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Responsive tables and media inside content */
+  .grid-container table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-collapse: collapse;
+    border: 1px solid hsl(from var(--med-gray) h s calc(l - 20));
+    background-color: var(--off-white);
+  }
+  .grid-container th,
+  .grid-container td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid hsl(from var(--med-gray) h s calc(l - 20));
+    text-align: left;
+    vertical-align: top;
+    word-break: normal;
+    overflow-wrap: normal;
+    white-space: normal;
+  }
+  .grid-container thead th {
+    background-color: hsl(from var(--med-gray) h s calc(l + 10));
+  }
+  .grid-container pre,
+  .grid-container code {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .grid-container img,
+  .grid-container iframe {
+    max-width: 100%;
+    height: auto;
   }
 
   &.single-column .grid-container {
@@ -140,9 +231,142 @@ main {
 footer {
   display: flex;
   justify-content: center;
+  padding: 0 1rem;
 
   > div {
     width: 100%;
     max-width: 960px;
+  }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    
+    .site-logo {
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+    
+    nav {
+      justify-content: center;
+    }
+  }
+  
+  main {
+    padding: 1rem 1rem 0;
+    
+    .grid-container {
+      padding: 0 1rem;
+    }
+    
+    /* Ensure content doesn't hit screen edges on mobile */
+    .grid-container > * {
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: 0;
+      margin-right: 0;
+      max-width: 100%;
+    }
+    
+    /* Force text wrapping and prevent overflow */
+    .grid-container {
+      overflow-x: hidden;
+    }
+    
+    .grid-container * {
+      max-width: 100%;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+  }
+  
+  /* Convert two-column layouts to single column on mobile */
+  main.sidebar-left .grid-container,
+  main.sidebar-right .grid-container {
+    grid-template:
+      "a" auto
+      "b" auto / auto;
+  }
+  
+  main.sidebar-left .grid-container article,
+  main.sidebar-right .grid-container article {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  main.sidebar-left .grid-container aside,
+  main.sidebar-right .grid-container aside {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0;
+  }
+  
+  footer {
+    padding: 0 1rem;
+  }
+
+  /* Allow table cell content to wrap intelligently on mobile */
+  .grid-container th,
+  .grid-container td {
+    word-break: normal;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 16px 12px;
+    font-size: 1.25rem;
+    
+    .site-logo img {
+      max-width: 200px;
+    }
+    
+    nav a {
+      padding: 6px 16px;
+      font-size: 1rem;
+    }
+  }
+  
+  main {
+    padding: 0.75rem 1rem 0;
+    font-size: 1.1rem;
+    
+    .grid-container {
+      padding: 0 1rem;
+    }
+    
+    /* Ensure content doesn't hit screen edges on small mobile */
+    .grid-container > * {
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: 0;
+      margin-right: 0;
+      max-width: 100%;
+    }
+    
+    /* Force text wrapping and prevent overflow on small mobile */
+    .grid-container {
+      overflow-x: hidden;
+    }
+    
+    .grid-container * {
+      max-width: 100%;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+  }
+  
+
+  /* Ensure long content inside table cells can wrap on very small screens */
+  .grid-container th,
+  .grid-container td {
+    word-break: normal;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 }
