@@ -1,0 +1,13 @@
+---
+import Layout from '@layouts/SingleColumn.astro';
+import NewsFeed from '@components/News/NewsFeed.astro';
+
+const layoutProps = {
+  metaTitle: "News | Epsilon Zeta Alumni Association",
+  pageTitle: "News",
+};
+---
+
+<Layout {...layoutProps}>
+  <NewsFeed />
+</Layout>

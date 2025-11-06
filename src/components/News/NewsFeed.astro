@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import NewsItem from './NewsItem.astro';
 import './news-feed.css';
 
+const { limit, title } = Astro.props;
+
 const newsItems = (
   await getCollection("news")
 ).sort((a, b) => {
@@ -11,10 +13,16 @@ const newsItems = (
   return (db.valueOf() - da.valueOf());
 });
 
+if (limit && limit > 0) {
+  newsItems.splice(limit);
+}
+
 ---
 
 <div id="news-feed">
-  <h2>Recent News</h2>
+  { title && (
+    <h2>{title}</h2>
+  )}
   <ul>
     {
       newsItems.map((item: any) => (
@@ -22,4 +30,9 @@ const newsItems = (
       ))
     }
   </ul>
+  { limit && (
+    <a href="/news">
+      View More News &rarr;
+    </a>
+  )}
 </div>
