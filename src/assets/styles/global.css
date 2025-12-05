@@ -1,10 +1,13 @@
-
 body {
   color: var(--font-base);
   background: var(--med-gray);
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   line-height: 1.1em;
 }
 h1 {
@@ -53,11 +56,11 @@ header {
   padding: 24px 18px;
 
   background: var(--apo-blue);
-  border-bottom: solid .5rem var(--apo-gold);
+  border-bottom: solid 0.5rem var(--apo-gold);
 
   font-size: 1.5rem;
   line-height: 2.1rem;
-  
+
   &,
   a {
     color: var(--off-white);
@@ -88,7 +91,7 @@ header {
       font-weight: bold;
       text-align: center;
       text-transform: uppercase;
-    };
+    }
   }
 
   nav {
@@ -116,35 +119,35 @@ main {
   background-color: var(--off-white);
 
   .grid-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      padding: 0 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    padding: 0 1rem;
   }
-  
+
   /* Prevent grid children from causing horizontal overflow */
   .grid-container article,
   .grid-container aside {
     min-width: 0; /* allow content to shrink within grid tracks */
   }
-  
+
   /* Ensure all content has proper padding */
   .grid-container > * {
     padding-left: 0;
     padding-right: 0;
   }
-  
+
   /* Ensure content doesn't overflow container */
   .grid-container {
     box-sizing: border-box;
     overflow-x: hidden;
   }
-  
+
   .grid-container * {
     box-sizing: border-box;
     max-width: 100%;
   }
-  
+
   /* Force all text content to respect container boundaries */
   .grid-container p,
   .grid-container h1,
@@ -197,8 +200,7 @@ main {
   }
 
   &.single-column .grid-container {
-    grid-template:
-      "a" auto / auto;
+    grid-template: "a" auto / auto;
   }
   &.sidebar-left .grid-container,
   &.sidebar-right .grid-container {
@@ -244,24 +246,24 @@ footer {
   header {
     flex-direction: column;
     text-align: center;
-    
+
     .site-logo {
       margin-right: 0;
       margin-bottom: 1rem;
     }
-    
+
     nav {
       justify-content: center;
     }
   }
-  
+
   main {
     padding: 1rem 1rem 0;
-    
+
     .grid-container {
       padding: 0 1rem;
     }
-    
+
     /* Ensure content doesn't hit screen edges on mobile */
     .grid-container > * {
       padding-left: 0;
@@ -270,19 +272,19 @@ footer {
       margin-right: 0;
       max-width: 100%;
     }
-    
+
     /* Force text wrapping and prevent overflow */
     .grid-container {
       overflow-x: hidden;
     }
-    
+
     .grid-container * {
       max-width: 100%;
       word-wrap: break-word;
       overflow-wrap: break-word;
     }
   }
-  
+
   /* Convert two-column layouts to single column on mobile */
   main.sidebar-left .grid-container,
   main.sidebar-right .grid-container {
@@ -290,20 +292,20 @@ footer {
       "a" auto
       "b" auto / auto;
   }
-  
+
   main.sidebar-left .grid-container article,
   main.sidebar-right .grid-container article {
     margin-left: 0;
     margin-right: 0;
   }
-  
+
   main.sidebar-left .grid-container aside,
   main.sidebar-right .grid-container aside {
     grid-column: 1;
     grid-row: 2;
     margin-top: 0;
   }
-  
+
   footer {
     padding: 0 1rem;
   }
@@ -321,25 +323,25 @@ footer {
   header {
     padding: 16px 12px;
     font-size: 1.25rem;
-    
+
     .site-logo img {
       max-width: 200px;
     }
-    
+
     nav a {
       padding: 6px 16px;
       font-size: 1rem;
     }
   }
-  
+
   main {
     padding: 0.75rem 1rem 0;
     font-size: 1.1rem;
-    
+
     .grid-container {
       padding: 0 1rem;
     }
-    
+
     /* Ensure content doesn't hit screen edges on small mobile */
     .grid-container > * {
       padding-left: 0;
@@ -348,19 +350,18 @@ footer {
       margin-right: 0;
       max-width: 100%;
     }
-    
+
     /* Force text wrapping and prevent overflow on small mobile */
     .grid-container {
       overflow-x: hidden;
     }
-    
+
     .grid-container * {
       max-width: 100%;
       word-wrap: break-word;
       overflow-wrap: break-word;
     }
   }
-  
 
   /* Ensure long content inside table cells can wrap on very small screens */
   .grid-container th,
