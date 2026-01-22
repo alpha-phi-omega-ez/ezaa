@@ -2,8 +2,7 @@ name: Astro Build Test
 
 on: [pull_request]
 
-permissions:
-  contents: read
+permissions: read-all
 
 jobs:
   build:
