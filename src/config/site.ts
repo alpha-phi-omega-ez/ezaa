@@ -5,3 +5,8 @@ export const SITE = {
   defaultImage: "/favicon.png",
 } as const;
 
+/** Full page title for <title> and OG/Twitter meta; adds site name when not present. */
+export function getFullTitle(title: string): string {
+  return title.includes(SITE.name) ? title : `${title} | ${SITE.name}`;
+}
+
