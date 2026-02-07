@@ -74,6 +74,8 @@ header {
 
   .site-logo {
     margin-right: 48px;
+    /* Reserve space for logo to prevent CLS (layout shift) before image loads */
+    min-height: 179px;
 
     a {
       border: 0;
@@ -82,8 +84,9 @@ header {
     img {
       margin-bottom: 24px;
       max-width: 250px;
-      width: auto;
-      height: auto;
+      width: 250px;
+      height: 179px;
+      object-fit: contain;
     }
 
     .site-subhead {
@@ -325,8 +328,13 @@ footer {
     padding: 16px 12px;
     font-size: 1.25rem;
 
+    .site-logo {
+      min-height: 143px;
+    }
     .site-logo img {
       max-width: 200px;
+      width: 200px;
+      height: 143px;
     }
 
     nav a {
