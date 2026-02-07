@@ -1,10 +1,37 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 
-const { metaTitle, pageTitle } = Astro.props;
+interface Props {
+  metaTitle: string;
+  pageTitle: string;
+  description?: string;
+  image?: string;
+  type?: string;
+  url?: string;
+  canonical?: string;
+}
+
+const { 
+  metaTitle, 
+  pageTitle,
+  description,
+  image,
+  type,
+  url,
+  canonical,
+} = Astro.props;
 ---
 
-<BaseLayout metaTitle={metaTitle} pageTitle={pageTitle} contentLayout="sidebar-right">
+<BaseLayout 
+  metaTitle={metaTitle} 
+  pageTitle={pageTitle} 
+  contentLayout="sidebar-right"
+  description={description}
+  image={image}
+  type={type}
+  url={url}
+  canonical={canonical}
+>
   <article>
     <slot />
   </article>
