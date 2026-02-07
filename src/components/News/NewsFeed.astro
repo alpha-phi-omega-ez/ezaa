@@ -19,20 +19,22 @@ if (limit && limit > 0) {
 
 ---
 
-<div id="news-feed">
-  { title && (
-    <h2>{title}</h2>
-  )}
-  <ul>
-    {
-      newsItems.map((item: any) => (
-        <NewsItem item={item} />
-      ))
-    }
-  </ul>
-  { limit && (
-    <a href="/news">
-      View More News &rarr;
-    </a>
-  )}
+<div class="news-feed-wrapper">
+  <div id="news-feed">
+    { title && (
+      <h2>{title}</h2>
+    )}
+    <ul>
+      {
+        newsItems.map((item: any) => (
+          <NewsItem item={item} />
+        ))
+      }
+    </ul>
+    { limit && (
+      <a href="/news">
+        View More News &rarr;
+      </a>
+    )}
+  </div>
 </div>

@@ -1,4 +1,12 @@
+.news-feed-wrapper {
+  margin-bottom: 2rem;
+  overflow: visible;
+}
+
 #news-feed {
+  overflow: visible;
+  max-height: none;
+
   ul, li {
     list-style: none outside none;
   }
