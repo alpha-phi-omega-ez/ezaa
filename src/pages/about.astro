@@ -1,10 +1,13 @@
 ---
 import Layout from '@layouts/SidebarRight.astro';
 import OfficersBlock from '@components/OfficersBlock.astro';
+import { SITE } from '@/config/site';
 
 const layoutProps = {
   metaTitle: "About EZAA | Epsilon Zeta Alumni Association",
   pageTitle: "About EZAA",
+  description: "The purpose of the EZAA is to keep the alumni of the Epsilon Zeta chapter of Alpha Phi Omega informed about the chapter's goings on, events, and ways to stay active by participating in service events.",
+  canonical: `${SITE.url}/about`,
 };
 ---
 

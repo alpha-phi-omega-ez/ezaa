@@ -1,15 +1,18 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import Layout from '@layouts/SingleColumn.astro';
 import ExternalLink from '@components/ExternalLink.astro';
 import Calendar from '@components/Calendar.astro';
+import { SITE } from '@/config/site';
 
 const layoutProps = {
   metaTitle: "Find Us | Epsilon Zeta Alumni Association",
   pageTitle: "Find EZAA Online",
+  description: "Connect with the Epsilon Zeta Alumni Association on Facebook, sign up for email updates, and view our calendar of events.",
+  canonical: `${SITE.url}/find-us`,
 };
 ---
 
-<BaseLayout {...layoutProps}>
+<Layout {...layoutProps}>
   <h2>Join us on Facebook</h2>
   <p>
     Join the discussion and receive updates on our
@@ -31,4 +34,4 @@ const layoutProps = {
     of previously-sent messages.
   </p>
   <Calendar />
-</BaseLayout>
+</Layout>
