@@ -1,17 +1,19 @@
 ---
 import Layout from '@layouts/SingleColumn.astro';
 import NewsFeed from '@components/News/NewsFeed.astro';
+import { SITE } from '@/config/site';
 
 const layoutProps = {
   metaTitle: "Epsilon Zeta Alumni Association",
   pageTitle: "Welcome",
+  description: "Welcome to the Epsilon Zeta Alumni Association website. Stay connected with EZ alumni, learn about events, news, and ways to stay active through service.",
+  canonical: SITE.url,
 };
 ---
 
 <Layout {...layoutProps}>
   <p>Welcome to the new Epsilon Zeta Alumni Association website.</p>
-  <p>We're still in the process of migrating documents, files, and photographs. Please stay tuned for news and further updates in the coming months.</p>
-  <p>You may sign up for our mailing list or find us on social media <a href="/find-us">here</a>.</p>
+  <p>You may <a href="/find-us">sign up for our mailing list or find us on social media</a>.</p>
 
   <NewsFeed
     limit=3

@@ -11,6 +11,8 @@ const schema = z.object({
   date: z.coerce.date(),
   participants: z.array(z.string()),
   tags: z.array(z.string()).optional(),
+  summary: z.string().optional(),
+  image: z.string().optional(),
 });
 
 const config = { loader, schema };

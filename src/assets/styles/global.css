@@ -74,6 +74,8 @@ header {
 
   .site-logo {
     margin-right: 48px;
+    /* Reserve space for logo to prevent CLS (layout shift) before image loads */
+    min-height: 179px;
 
     a {
       border: 0;
@@ -82,8 +84,9 @@ header {
     img {
       margin-bottom: 24px;
       max-width: 250px;
-      width: auto;
-      height: auto;
+      width: 250px;
+      height: 179px;
+      object-fit: contain;
     }
 
     .site-subhead {
@@ -113,7 +116,7 @@ header {
 }
 
 main {
-  padding: 2rem 1rem 0;
+  padding: 2rem 1rem 2rem;
   /* Fluid base size with cap */
   font-size: clamp(1rem, 0.6vw + 0.95rem, 1.25rem);
   background-color: var(--off-white);
@@ -207,11 +210,12 @@ main {
     grid-template:
       "a a" auto
       "b c" auto;
+    column-gap: 1rem;
   }
   &.sidebar-left .grid-container {
     grid-template-columns: 1fr 2fr;
     article {
-      margin-left: 2rem;
+      margin-left: 0;
     }
     aside {
       grid-column: 1;
@@ -221,7 +225,7 @@ main {
   &.sidebar-right .grid-container {
     grid-template-columns: 2fr 1fr;
     article {
-      margin-right: 2rem;
+      margin-right: 0;
     }
     aside {
       grid-column: 2;
@@ -324,8 +328,13 @@ footer {
     padding: 16px 12px;
     font-size: 1.25rem;
 
+    .site-logo {
+      min-height: 143px;
+    }
     .site-logo img {
       max-width: 200px;
+      width: 200px;
+      height: 143px;
     }
 
     nav a {

@@ -1,10 +1,13 @@
 ---
 import Layout from '@layouts/SingleColumn.astro';
 import NewsFeed from '@components/News/NewsFeed.astro';
+import { SITE } from '@/config/site';
 
 const layoutProps = {
   metaTitle: "News | Epsilon Zeta Alumni Association",
   pageTitle: "News",
+  description: "Stay up to date with the latest news and updates from the Epsilon Zeta Alumni Association of Alpha Phi Omega.",
+  canonical: `${SITE.url}/news`,
 };
 ---
 

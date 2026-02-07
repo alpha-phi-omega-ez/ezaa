@@ -11,6 +11,8 @@ const schema = z.object({
   date: z.coerce.date(),
   author: z.string(),
   tags: z.array(z.string()),
+  summary: z.string().optional(),
+  image: z.string().optional(),
 });
 
 const config = { loader, schema };
