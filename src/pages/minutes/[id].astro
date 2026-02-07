@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import SidebarRight from '@layouts/SidebarRight.astro';
 import { formatDate } from '@scripts/date';
+import { SITE } from '@/config/site';
 
 export const getStaticPaths = async () => {
   const news = await getCollection("minutes");
@@ -19,15 +20,55 @@ const {
       date,
       title,
       participants,
+      summary,
+      image,
     },
+    body,
   },
 } = Astro.props;
 
 const formattedDate = formatDate(date);
 const { Content } = await render(minutes);
+
+let description = summary;
+if (!description && body) {
+  const firstParagraph = body
+    .split('\n\n')
+    .find(p => p.trim().length > 0 && !p.trim().startsWith('#') && !p.trim().startsWith('!'));
+  if (firstParagraph) {
+    description = firstParagraph
+      .replace(/[#*_`\[\]()]/g, '')
+      .replace(/!\[.*?\]\(.*?\)/g, '')
+      .trim()
+      .substring(0, 160);
+    if (description.length === 160) {
+      description += '...';
+    }
+  }
+}
+if (!description) {
+  description = `Meeting minutes for ${title} - ${SITE.name}`;
+}
+
+let ogImage = image;
+if (!ogImage && body) {
+  const imageMatch = body.match(/!\[.*?\]\(([^)]+)\)/);
+  if (imageMatch && imageMatch[1]) {
+    ogImage = imageMatch[1];
+  }
+}
+
+const canonical = `${SITE.url}/minutes/${minutes.id}`;
 ---
 
-<SidebarRight metaTitle={title} pageTitle={title} contentLayout="sidebar-right">
+<SidebarRight 
+  metaTitle={title} 
+  pageTitle={title} 
+  description={description}
+  image={ogImage}
+  type="article"
+  canonical={canonical}
+>
   <strong>
   { formattedDate }
   </strong>
