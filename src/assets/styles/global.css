@@ -196,10 +196,13 @@ main {
     white-space: pre-wrap;
     word-break: break-word;
   }
-  .grid-container img,
-  .grid-container iframe {
+  .grid-container img {
     max-width: 100%;
     height: auto;
+  }
+  /* iframes have no intrinsic height; height:auto collapses them (e.g. PDF embeds) */
+  .grid-container iframe {
+    max-width: 100%;
   }
 
   &.single-column .grid-container {
