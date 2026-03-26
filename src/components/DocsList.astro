@@ -1,5 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
+import fs from "node:fs";
+import path from "node:path";
+import { getCollection } from "astro:content";
 
 const desiredTags = ["business meeting", "ecom meeting"];
 
@@ -13,6 +15,57 @@ const minutes = (
   return (db.valueOf() - da.valueOf());
 });
 
+/** Later season within the same calendar year = newer (Spring → Winter). */
+const SEASON_ORDER: Record<string, number> = {
+  spring: 1,
+  summer: 2,
+  fall: 3,
+  winter: 4,
+};
+
+type NewsletterItem = { sortKey: number; label: string; href: string };
+
+function parseNewsletterPdf(filename: string): NewsletterItem | null {
+  if (!filename.toLowerCase().endsWith(".pdf")) return null;
+  const m = filename.match(/_([A-Za-z]+)_(\d{4})\.pdf$/i);
+  if (!m) return null;
+  const seasonKey = m[1].toLowerCase();
+  const year = Number(m[2]);
+  const seasonIdx = SEASON_ORDER[seasonKey];
+  if (!Number.isFinite(year) || seasonIdx === undefined) return null;
+  const sortKey = year * 100 + seasonIdx;
+  const seasonLabel = m[1].charAt(0).toUpperCase() + m[1].slice(1).toLowerCase();
+  return {
+    sortKey,
+    label: `${seasonLabel} ${year}`,
+    href: `/docs/newsletters/${encodeURIComponent(filename)}`,
+  };
+}
+
+function fallbackNewsletterEntry(filename: string): NewsletterItem {
+  const base = filename.replace(/\.pdf$/i, "").replace(/_/g, " ");
+  return {
+    sortKey: -1,
+    label: base,
+    href: `/docs/newsletters/${encodeURIComponent(filename)}`,
+  };
+}
+
+const newslettersDir = path.join(process.cwd(), "public/docs/newsletters");
+let newsletters: NewsletterItem[] = [];
+try {
+  const names = fs.readdirSync(newslettersDir);
+  newsletters = names
+    .filter((n: string) => n.toLowerCase().endsWith(".pdf"))
+    .map((name: string) => parseNewsletterPdf(name) ?? fallbackNewsletterEntry(name))
+    .sort((a: NewsletterItem, b: NewsletterItem) => {
+      if (b.sortKey !== a.sortKey) return b.sortKey - a.sortKey;
+      return a.label.localeCompare(b.label);
+    });
+} catch {
+  newsletters = [];
+}
+
 ---
 
 <div id="docs-list">
@@ -24,6 +77,22 @@ const minutes = (
         </a>
       </li>
     </ul>
+  {
+    newsletters.length > 0 && (
+      <>
+        <h2>Newsletters</h2>
+        <ul>
+          {newsletters.map((n) => (
+            <li>
+              <a href={n.href} target="_blank" rel="noopener noreferrer">
+                {n.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
   <h2>Meeting Minutes</h2>
   <ul>
     {
