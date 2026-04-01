@@ -9,7 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.18.1"
+    "astro": "^6.1.2"
   },
   "devDependencies": {
     "@igor.dvlpr/astro-post-excerpt": "^4.0.0",
