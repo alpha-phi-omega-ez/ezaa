@@ -5,8 +5,8 @@ import { formatDate } from '@scripts/date';
 import { SITE } from '@/config/site';
 
 export const getStaticPaths = async () => {
-  const news = await getCollection("minutes");
-  return news.map((minutes) => ({
+  const minutes_collection = await getCollection("minutes");
+  return minutes_collection.map((minutes) => ({
     params: { id: minutes.id },
     props: { minutes },
   }));
