@@ -1,12 +1,8 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
+import { getMinutes } from "@scripts/content";
 
 export async function GET(context) {
-  const minutes = (await getCollection("minutes")).sort((a, b) => {
-    let da = new Date(a.data.date);
-    let db = new Date(b.data.date);
-    return db.valueOf() - da.valueOf();
-  });
+  const minutes = await getMinutes();
   return rss({
     title: "EZAA Minutes",
     description:

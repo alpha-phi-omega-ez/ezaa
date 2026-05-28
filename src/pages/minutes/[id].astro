@@ -1,11 +1,12 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
+import { getMinutes } from '@scripts/content';
 import SidebarRight from '@layouts/SidebarRight.astro';
 import { formatDate } from '@scripts/date';
 import { SITE } from '@/config/site';
 
 export const getStaticPaths = async () => {
-  const minutes_collection = await getCollection("minutes");
+  const minutes_collection = await getMinutes();
   return minutes_collection.map((minutes) => ({
     params: { id: minutes.id },
     props: { minutes },
