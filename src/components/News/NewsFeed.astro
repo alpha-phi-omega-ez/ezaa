@@ -1,17 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
+import { getNews } from '@scripts/content';
 import NewsItem from './NewsItem.astro';
 import './news-feed.css';
 
 const { limit, title } = Astro.props;
 
-const newsItems = (
-  await getCollection("news")
-).sort((a, b) => {
-  let da = new Date(a.data.date);
-  let db = new Date(b.data.date);
-  return (db.valueOf() - da.valueOf());
-});
+const newsItems = await getNews();
 
 if (limit && limit > 0) {
   newsItems.splice(limit);

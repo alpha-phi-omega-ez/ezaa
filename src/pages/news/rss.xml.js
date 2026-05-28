@@ -1,16 +1,12 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
+import { getNews } from "@scripts/content";
 
 export async function GET(context) {
-  const news = (await getCollection("news")).sort((a, b) => {
-    let da = new Date(a.data.date);
-    let db = new Date(b.data.date);
-    return db.valueOf() - da.valueOf();
-  });
+  const news = await getNews();
   return rss({
     title: "EZAA News",
     description:
-      "We post all meeting minutes from EZAA general, ECOM, and committee meetings",
+      "We post ezaa news and announcements",
     site: context.site,
     items: news.map((article) => ({
       title: article.data.title,

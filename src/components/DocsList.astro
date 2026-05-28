@@ -1,19 +1,9 @@
 ---
 import fs from "node:fs";
 import path from "node:path";
-import { getCollection } from "astro:content";
+import { getMinutes } from "@scripts/content";
 
-const desiredTags = ["business meeting", "ecom meeting"];
-
-const minutes = (
-  await getCollection("minutes")
-).filter((i) => (
-  desiredTags.some(tag => i.data.tags?.includes(tag))
-)).sort((a, b) => {
-  let da = new Date(a.data.date);
-  let db = new Date(b.data.date);
-  return (db.valueOf() - da.valueOf());
-});
+const minutes = await getMinutes("docs");
 
 /** Later season within the same calendar year = newer (Spring → Winter). */
 const SEASON_ORDER: Record<string, number> = {
