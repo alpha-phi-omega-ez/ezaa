@@ -1,5 +1,5 @@
-import { z } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
 
 const loader = glob({
   pattern: "**/*.md",
@@ -16,8 +16,4 @@ const schema = z.object({
 });
 
 const config = { loader, schema };
-export {
-  config as default,
-  loader,
-  schema,
-};
+export { config as default, loader, schema };

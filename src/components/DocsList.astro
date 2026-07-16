@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { getMinutes } from "@scripts/content";
 
-const minutes = await getMinutes("docs");
+const minutes = await getMinutes();
 
 /** Later season within the same calendar year = newer (Spring → Winter). */
 const SEASON_ORDER: Record<string, number> = {
