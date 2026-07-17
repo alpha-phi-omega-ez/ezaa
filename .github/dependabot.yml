@@ -9,6 +9,8 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "monthly"
+    commit-message:
+      prefix: "chore(dep npm)"
     groups:
       all-dependencies:
         patterns:
@@ -17,6 +19,8 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    commit-message:
+      prefix: "chore(dep GH action)"
     groups:
       github-actions:
         patterns:
