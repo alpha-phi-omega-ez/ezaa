@@ -9,6 +9,9 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "monthly"
+      day: "friday" # Runs on the first Friday of every month
+      time: "09:00"
+      timezone: "America/New_York"
     commit-message:
       prefix: "chore(dep npm)"
     groups:
@@ -19,6 +22,9 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+      day: "friday" # Runs on the first Friday of every month
+      time: "09:00"
+      timezone: "America/New_York"
     commit-message:
       prefix: "chore(dep GH action)"
     groups:
