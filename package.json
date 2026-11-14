@@ -11,7 +11,7 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.4.4"
+    "astro": "^7.4.12"
   },
   "devDependencies": {
     "@igor.dvlpr/astro-post-excerpt": "4.1.1-alpha.0",
